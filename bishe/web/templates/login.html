@@ -1,0 +1,157 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+
+{% block title %}用户登陆{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/account.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div style="background-image: url('{% static "img/background.jpg" %}'); height: 740px; padding-top: 80px" class="clearfix">
+    <div style="float: left; margin-left: 140px; margin-top: 150px; width: 700px;">
+        <div style="font-size: 50px; text-align: center">轻量级任务追踪系统</div>
+        <div style="margin-top: 50px; font-size: 20px; color: #3d3d3d; text-align: center">简洁、高效的Bug追踪，轻量、便捷的项目管理，安全、稳定的数据保障，完美地将Bug管理与团队协作结合在一起。项目管理，本就是一种优雅的艺术。</div>
+    </div>
+    <div class="account" style="margin-top: 100px">
+        <div class="title">{% if request.path_info == '/login/sms/' %}短信登陆{% elif request.path_info == '/login/' %}密码登陆{% endif %}</div>
+        <form id="smsform" method="post" novalidate>
+            {% for field in form %}
+                {% if field.name == 'code' %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        <div class="clearfix">
+                            <div class="col-md-6" style="padding-left: 0">{{ field }}
+                                <span class="err-msg" style="color: red; font-size: 13px; position: absolute">{{ field.error.0 }}</span>
+                            </div>
+                            <div class="col-md-6"><input id="btnSms" type="button" class="btn btn-default" value="点击获取验证码"></div>
+                        </div>
+                    </div>
+                {% elif field.name == 'imgcode' %}
+                    <div class="form-group clearfix">
+                        <div class="col-md-6" style="padding: 0">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                <div style="padding-left: 0">{{ field }}
+                                    <span class="err-msg" style="color: red; font-size: 13px; position: absolute">{{ field.error.0 }}</span>
+                                </div>
+                        </div>
+                        <div class="col-md-6" style="padding-left: 40px">
+                            <img id="image_code" style=" width: 100px; display: block" src="{% url 'web:image_code' %}">
+                            <span style="font-size: smaller; cursor: pointer" id="flush_code">看不清..点我刷新</span>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        <span class="err-msg" style="color: red; font-size: 13px; position: absolute">{{ field.error.0 }}</span>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <div class="row">
+                <div class="col-xs-3">
+                    <input id="login-sms" type="button" class="btn btn-primary" value="登 陆">
+                </div>
+                {% if request.path_info == '/login/' %}
+                    <div class="col-xs-9" style="text-align: center; height: 34px; line-height: 34px;">
+                        <a href="{% url 'web:login_sms' %}">短信验证码登陆？</a>&thinsp;&thinsp;&thinsp;&thinsp;
+                    </div>
+                {% elif request.path_info == '/login/sms/' %}
+                    <div class="col-xs-9" style="text-align: center; height: 34px; line-height: 34px;">
+                        <a href="{% url 'web:login' %}">账号密码登陆？</a>
+                    </div>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript">
+        $(function () {
+            bindClickBtnSms();
+            bindClickBtnLogin();
+            bindClickBtnCode();
+        });
+
+        // 点击获取验证码的按钮绑定事件
+        function bindClickBtnSms() {
+
+            $("#btnSms").click(function () {
+                $(".err-msg").empty();
+                var mobile_phone = $("#id_mobile_phone").val();
+                $.ajax({
+                    url: '{% url 'web:send_sms' %}',
+                    type: 'GET',
+                    data: {mobile_phone: mobile_phone, tpl: "login"},
+                    dataType:'JSON',
+                    success: function (res) {
+                        if (res.status){
+                            //成功
+                            sendSmsRemind();
+                        }else{
+                            $.each(res.error, function (key, value) {
+                                $("#id_"+key).next().text(value[0]);
+                            })
+                        }
+                    }
+                })
+            })
+        }
+
+        function sendSmsRemind() {
+            var $smsBtn = $("#btnSms");
+            $smsBtn.prop('disabled', true);
+
+            var time = 60;
+            var remind = setInterval(function () {
+                $smsBtn.val(time + '秒重新发送');
+                time = time - 1;
+                if (time < 1) {
+                    clearTimeout(remind);
+                    $smsBtn.val('点击获取验证码').prop('disabled', false)
+                }
+
+            }, 1000)
+        }
+
+        function bindClickBtnLogin() {
+
+            $("#login-sms").click(function () {
+                $(".err-msg").empty();
+                $.ajax({
+                    url: {% if request.path_info == '/login/sms/' %}'{% url 'web:login_sms' %}'{% elif request.path_info == '/login/' %}'{% url 'web:login' %}'{% endif %},
+                    type: 'POST',
+                    data: $("#smsform").serialize(),
+                    dataType: 'JSON',
+                    success: function (res) {
+                        if (res.status){
+                            //成功
+                            window.location.href = res.data
+
+                        }else{
+                            $("#image_code").attr("src", "/image/code?flag=" + Math.random());
+                            $.each(res.error, function (key, value) {
+                                $("#id_"+key).next().text(value[0]);
+                                console.log(key, value[0]);
+                            })
+                        }
+                    }
+                })
+            })
+        }
+
+        function bindClickBtnCode() {
+            $("#flush_code").click(function () {
+                $.ajax({
+                    success: function () {
+                        $("#image_code").attr("src", "/image/code?flag=" + Math.random());
+                    }
+                })
+            })
+
+        }
+
+    </script>
+{% endblock %}

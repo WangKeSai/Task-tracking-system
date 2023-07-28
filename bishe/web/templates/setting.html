@@ -1,0 +1,376 @@
+{% extends 'layout/manage.html' %}
+{% load dashboard %}
+{% block title %}配置{% endblock %}
+{% block css %}
+    <style>
+        .error-msg {
+            color: red;
+        }
+
+        .choose {
+            border-left: 5px solid #f99b15 !important;
+            background-color: #dddddd !important;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container clearfix" style="margin-top: 20px;">
+        <div class="col-sm-3">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background-color:transparent;font-weight: bold;">
+                    个人中心
+                </div>
+                <div class="list-group" style="border-radius: 0">
+                    <div>
+                        <a href="{% url 'web:setting_project_info' project_id=request.tracer.project.id %}"
+                           class="list-group-item {% if navbar == 'project_info' %}choose{% endif %}">项目资料</a>
+                        <a href="{% url 'web:setting_project_users' project_id=request.tracer.project.id %}"
+                           class="list-group-item {% if navbar == 'project_users' %}choose{% endif %}">项目成员</a>
+                        <a href="{% url 'web:setting_project_issue_type' project_id=request.tracer.project.id %}"
+                           class="list-group-item {% if navbar == 'project_issue_type' %}choose{% endif %}">问题类型</a>
+                        <a href="{% url 'web:setting_project_issue_module' project_id=request.tracer.project.id %}"
+                           class="list-group-item {% if navbar == 'project_issue_module' %}choose{% endif %}">问题模块</a>
+                        {% if request.tracer.user == request.tracer.project.creator %}
+                            <a href="{% url 'web:setting_delete' project_id=request.tracer.project.id %}"
+                               class="list-group-item {% if navbar == 'delete' %}choose{% endif %}">删除项目</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {% if navbar == 'delete' %}
+                        <i class="fa fa-trash" aria-hidden="true"></i> 删除项目
+                    {% elif navbar == 'project_info' %}
+                        <i class="fa fa-address-card-o" aria-hidden="true"></i> 项目资料
+                    {% elif navbar == 'project_users' %}
+                        <i class="fa fa-users" aria-hidden="true"></i> 项目成员
+                    {% elif navbar == 'project_issue_type' %}
+                        <i class="fa fa-tag" aria-hidden="true"></i> 问题类型
+                    {% elif navbar == 'project_issue_module' %}
+                        <i class="fa fa-bookmark" aria-hidden="true"></i> 问题模块
+                    {% else %}
+                        <i class="fa fa-cog" aria-hidden="true"></i> 配置
+                    {% endif %}
+                </div>
+                <div class="panel-body">
+                    {% if navbar == 'delete' %}
+                        <form class="form-horizontal" method="post">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">项目名</label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" placeholder="请输入项目名称" name="project_name">
+                                    <span class="error-msg">{{ error }}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-5">
+                                    <input type="submit" class="btn btn-danger" value="删 除">
+                                </div>
+                            </div>
+
+                        </form>
+                    {% elif navbar == 'project_info' %}
+                        {% if request.tracer.user == request.tracer.project.creator %}
+                            <a type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#myModal"
+                               data-url="{% url "web:setting_project_info" project_id=request.tracer.project.id %}"
+                               data-whatever="修改项目资料">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 修改项目资料</a>
+                        {% endif %}
+                        <table class="table table-right" style="margin-top: 10px">
+                            <tbody>
+                            <tr>
+                                <td class="label-left">项目名称 ：</td>
+                                <td>{{ request.tracer.project.name }}</td>
+                            </tr>
+                            <tr>
+                                <td class="label-left">项目描述 ：</td>
+                                <td>{{ request.tracer.project.desc }}</td>
+                            </tr>
+                            <tr>
+                                <td class="label-left">创建者 ：</td>
+                                <td>{{ request.tracer.project.creator.username }}</td>
+                            </tr>
+                            <tr>
+                                <td class="label-left">创建时间 ：</td>
+                                <td>{{ request.tracer.project.create_time }}</td>
+                            </tr>
+                            <tr>
+                                <td class="label-left">参与人数 ：</td>
+                                <td>{{ request.tracer.project.join_count }} 人</td>
+                            </tr>
+                            <tr>
+                                <td class="label-left">问题总数 ：</td>
+                                <td>{{ issues_count }} 个问题</td>
+                            </tr>
+                            <tr>
+                                <td class="label-left">文件总数 ：</td>
+                                <td>{{ file_count }} 个文件</td>
+                            </tr>
+                            <tr>
+                                <td class="label-left">wiki总数 ：</td>
+                                <td>{{ wiki_count }} 个wiki</td>
+                            </tr>
+                            <tr>
+                                <td class="label-left">项目空间 ：</td>
+                                <td> {% user_space request.tracer.project.use_space %}
+                                    / {{ request.tracer.price_policy.project_space }} GB
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    {% elif navbar == 'project_users' %}
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>用户名称</th>
+                                <th>邀请者</th>
+                                <th>加入时间</th>
+                                {% if request.tracer.user == request.tracer.project.creator %}
+                                    <th>移出项目</th>
+                                {% endif %}
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for row in all_users %}
+                                <tr>
+                                    <td>{{ row.user.username }}</td>
+                                    <td>{{ row.invitee.username }}</td>
+                                    <td>{{ row.create_datetime }}</td>
+                                    {% if request.tracer.user == request.tracer.project.creator %}
+                                        <td>
+                                            <a id="delUser" type="button" class="btn btn-success btn-xs delBtn"
+                                               data-fid="{{ row.id }}"
+                                               data-title="是否确定要移除该成员？"
+                                               data-context="移除后将不可恢复。"
+                                               data-toggle="modal"
+                                               data-url="{% url "web:setting_project_users" project_id=request.tracer.project.id %}"
+                                               data-target="#alterModal">移出
+                                            </a>
+                                        </td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% elif navbar == 'project_issue_type' %}
+                        <table class="table">
+                            <caption>自定义类型 <a type="button" class="btn btn-success btn-xs" data-toggle="modal"
+                                              data-target="#myModal" data-whatever="添加问题类型"
+                                              data-url="{% url "web:setting_project_issue_type" project_id=request.tracer.project.id %}"
+                                              style="float: right"><i
+                                    class="fa fa-plus-circle" aria-hidden="true"></i>
+                                添加问题类型</a></caption>
+                            <thead>
+                            <tr>
+                                <th>问题类型</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in custom_type %}
+                                <tr>
+                                    <td>{{ item.title }}</td>
+                                    <td>
+
+                                        <a style="text-decoration: none" id="editFile" class="btn btn-default btn-xs"
+                                           data-tid="{{ item.id }}" data-name="{{ item.title }}" data-toggle="modal"
+                                           data-target="#myModal"
+                                           data-whatever="编辑问题类型"
+                                           data-url="{% url "web:setting_project_issue_type" project_id=request.tracer.project.id %}"><i
+                                                class="fa fa-pencil-square-o"
+                                                aria-hidden="true"></i>
+                                        </a>
+
+                                        <a style="text-decoration: none" id="delFile" class="btn btn-danger btn-xs"
+                                           data-fid="{{ item.id }}"
+                                           data-title="是否确定要删除该问题类型？"
+                                           data-context="删除后将不可恢复。"
+                                           data-toggle="modal"
+                                           data-url="{% url "web:setting_del_issue_type" project_id=request.tracer.project.id %}"
+                                           data-target="#alterModal"><i
+                                                class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% elif navbar == 'project_issue_module' %}
+                        <table class="table">
+                            <a type="button" class="btn btn-success btn-xs" data-toggle="modal"
+                               data-target="#myModal" data-whatever="添加问题模块"
+                               data-url="{% url "web:setting_project_issue_module" project_id=request.tracer.project.id %}"
+                            ><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                添加问题模块</a>
+                            <thead>
+                            <tr>
+                                <th>问题模块</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in module_list %}
+                                <tr>
+                                    <td>{{ item.title }}</td>
+                                    <td>
+
+                                        <a style="text-decoration: none" id="editFile" class="btn btn-default btn-xs"
+                                           data-tid="{{ item.id }}" data-name="{{ item.title }}" data-toggle="modal"
+                                           data-target="#myModal"
+                                           data-whatever="编辑问题模块"
+                                           data-url="{% url "web:setting_project_issue_module" project_id=request.tracer.project.id %}"><i
+                                                class="fa fa-pencil-square-o"
+                                                aria-hidden="true"></i>
+                                        </a>
+
+                                        <a style="text-decoration: none" id="delFile" class="btn btn-danger btn-xs"
+                                           data-fid="{{ item.id }}"
+                                           data-title="是否确定要删除该问题模块？"
+                                           data-context="删除后将不可恢复。"
+                                           data-toggle="modal"
+                                           data-url="{% url "web:setting_del_issue_module" project_id=request.tracer.project.id %}"
+                                           data-target="#alterModal"><i
+                                                class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <h4 style="text-align: center;">系统设置</h4>
+                    {% endif %}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"></h4>
+                </div>
+                <div class="modal-body">
+                    <form id="myform">
+                        <input type="text" id="tid" class="hide" name="tid">
+                        {% for field in form %}
+                            <div class="form-group">
+                                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                {{ field }}
+                                <span class="errmsg"
+                                      style="color: red; font-size: 13px; position: absolute">{{ field.error.0 }}</span>
+                            </div>
+                        {% endfor %}
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取 消</button>
+                    <button id="BtnaddFile" type="button" class="btn btn-primary" data-url="">确 认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="alterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <h4 id="deltitle">是否确定要移除该成员？ </h4>
+                <p style="padding-top: 20px; padding-bottom: 20px" id="delcontext">移除后将不可恢复。</p>
+                <p style="text-align: right">
+                    <a class="btn btn-default btn-sm" data-dismiss="modal" aria-label="Close">取 消</a>
+                    <button id="btnDelete" type="button" class="btn btn-danger btn-sm">确 定</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block js %}
+    <script>
+
+        $('#myModal').on('show.bs.modal', function (event) {
+            $('#id_title').val('');
+            var button = $(event.relatedTarget);
+            var recipient = button.data('whatever');
+            var url = button.data('url');
+            var name = button.data('name');
+            var tid = button.data('tid');
+            var modal = $(this);
+            modal.find('.modal-title').text(recipient);
+            modal.find('#BtnaddFile').attr('data-url', url);
+            if (name) {
+                modal.find('#id_title').val(name)
+            }
+            if (tid) {
+                modal.find('#tid').val(tid);
+            }
+        });
+
+        $('#alterModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var fid = button.data('fid');
+            var title = button.data('title');
+            var url = button.data('url');
+            var context = button.data('context');
+            $("#btnDelete").attr('fid', fid).attr('data-url', url);
+            $("#deltitle").text(title);
+            $("#delcontext").text(context);
+        });
+
+        $(function () {
+            bindClickbtnDelete();
+            bindClickeditBtn();
+        });
+
+        function bindClickbtnDelete() {
+            $("#btnDelete").click(function () {
+                $.ajax({
+                    url: $("#btnDelete").data('url'),
+                    type: 'POST',
+                    data: {p_id: $(this).attr('fid')},
+                    dataType: 'JSON',
+                    success: function (res) {
+                        if (res.status) {
+                            window.location.href = location.href
+                        } else {
+                            alert(res.error)
+                        }
+                    }
+                })
+            })
+        }
+
+        function bindClickeditBtn() {
+            $("#BtnaddFile").click(function () {
+                $.ajax({
+                    url: $("#BtnaddFile").data('url'),
+                    type: 'POST',
+                    data: $("#myform").serialize(),
+                    dataType: 'JSON',
+                    success: function (res) {
+                        if (res.status) {
+                            window.location.href = location.href
+                        } else {
+                            $.each(res.error, function (key, value) {
+                                $("#id_" + key).next().text(value[0]);
+                            })
+                        }
+                    }
+                })
+            })
+        }
+    </script>
+{% endblock %}

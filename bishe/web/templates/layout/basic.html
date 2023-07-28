@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'plugin/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'plugin/font-awesome/css/font-awesome.min.css' %}">
+    <style>
+        .navbar{
+            border-radius: 0;
+            margin-bottom: 0;
+        }
+    </style>
+
+    {% block css %}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'web:index' %}">WANGKS</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#gongneng">产品功能</a></li>
+                <li><a href="#qiye">企业方案</a></li>
+                <li><a href="#qiye">帮助文档</a></li>
+                <li><a href={% url 'web:price' %}>价格</a></li>
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+
+                {% if request.tracer.user %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">{{ request.tracer.user }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'web:project_list' %}">管理中心</a></li>
+                            <li><a data-toggle="modal" data-target="#pwdModal" style="cursor: pointer">修改密码</a></li>
+                            <li><a href="{% url 'web:history' %}">历史订单</a></li>
+                            <li><a href="{% url 'web:logout' %}">退 出</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'web:login' %}">登 陆</a></li>
+                    <li><a href="{% url 'web:register' %}">注 册</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="modal fade" id="pwdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">修改密码</h4>
+            </div>
+            <div class="modal-body">
+                <form id="pwd-form">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">原密码</label>
+                        <input type="password" class="form-control" id="id_pwd" name="password"
+                               placeholder="请输入原密码">
+                        <span class="errmsg" style="color: red; font-size: 13px; position: absolute"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">新密码</label>
+                        <input type="password" class="form-control" id="id_new_pwd" name="new_pwd"
+                               placeholder="请输入新密码">
+                        <span class="errmsg" style="color: red; font-size: 13px; position: absolute"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">确认密码</label>
+                        <input type="password" class="form-control" id="id_confirm_new_pwd" name="confirm_new_pwd"
+                               placeholder="请确认密码">
+                        <span class="errmsg" style="color: red; font-size: 13px; position: absolute"></span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取 消</button>
+                <button id="changePwdBtn" type="button" class="btn btn-primary">确 认</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% block content %}{% endblock %}
+
+
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'plugin/bootstrap/js/bootstrap.min.js' %}"></script>
+<script>
+        $(function () {
+            bindchangePwd()
+        });
+
+        function bindchangePwd() {
+            $("#changePwdBtn").click(function () {
+                $(".errmsg").text('');
+                $.ajax({
+                    url: '{% url "web:editpwd" %}',
+                    type: 'POST',
+                    data: $("#pwd-form").serialize(),
+                    dataType: 'JSON',
+                    success: function (res) {
+                        if (res.status) {
+                            alert("修改成功，请重新登录！");
+                            window.location.href = '{% url "web:login" %}'
+                        } else {
+                            $.each(res.error, function (key, value) {
+                                $("#id_" + key).next().text(value[0]);
+                            })
+                        }
+                    }
+
+                })
+            })
+        }
+    </script>
+{% block js %}{% endblock %}
+</body>
+</html>

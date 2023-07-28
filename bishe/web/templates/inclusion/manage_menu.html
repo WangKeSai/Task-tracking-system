@@ -1,0 +1,4 @@
+
+{% for menu in menu_list %}
+    <li class="{% if menu.class %} active {% endif %}"><a href="{{ menu.url }}">{{ menu.title }}</a></li>
+{% endfor %}

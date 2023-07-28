@@ -1,0 +1,123 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+
+{% block title %}用户注册{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/account.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div style="background-image: url('{% static "img/background.jpg" %}'); height: 740px; padding-top: 80px" class="clearfix">
+    <div style="float: left; margin-left: 140px; margin-top: 150px; width: 700px;">
+        <div style="font-size: 50px; text-align: center">轻量级任务追踪系统</div>
+        <div style="margin-top: 50px; font-size: 20px; color: #3d3d3d; text-align: center">简洁、高效的Bug追踪，轻量、便捷的项目管理，安全、稳定的数据保障，完美地将Bug管理与团队协作结合在一起。项目管理，本就是一种优雅的艺术。</div>
+    </div>
+    <div class="account">
+        <div class="title">用户注册</div>
+        <form id="register-form" method="post" novalidate>
+            {% for field in form %}
+                {% if field.name == 'code' %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        <div class="clearfix">
+                            <div class="col-md-6" style="padding-left: 0">{{ field }}
+                                <span class="err-msg" style="color: red; font-size: 13px; position: absolute">{{ field.error.0 }}</span>
+                            </div>
+                            <div class="col-md-6"><input id="btnSms" type="button" class="btn btn-default" value="点击获取验证码"></div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        <span class="err-msg" style="color: red; font-size: 13px; position: absolute">{{ field.error.0 }}</span>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <div class="row">
+                <div class="col-xs-3">
+                    <input id="regBtn" type="button" class="btn btn-primary" value="注 册">
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript">
+        // 页面加载完成之后自动执行的函数
+        $(function () {
+            bindClickBtnSms();
+            bindClickBtnSubmit()
+        });
+
+        // 点击获取验证码的按钮绑定事件
+        function bindClickBtnSms() {
+
+            $("#btnSms").click(function () {
+                $(".err-msg").empty();
+                var mobile_phone = $("#id_mobile_phone").val();
+                $.ajax({
+                    url: '{% url 'web:send_sms' %}',
+                    type: 'GET',
+                    data: {mobile_phone: mobile_phone, tpl: "register"},
+                    dataType:'JSON',
+                    success: function (res) {
+                        if (res.status){
+                            //成功
+                            sendSmsRemind();
+                        }else{
+                            $.each(res.error, function (key, value) {
+                                $("#id_"+key).next().text(value[0]);
+                            })
+                        }
+                    }
+                })
+            })
+        }
+
+        function sendSmsRemind() {
+            var $smsBtn = $("#btnSms");
+            $smsBtn.prop('disabled', true);
+
+            var time = 60;
+            var remind = setInterval(function () {
+                $smsBtn.val(time + '秒重新发送');
+                time = time - 1;
+                if (time < 1) {
+                    clearTimeout(remind);
+                    $smsBtn.val('点击获取验证码').prop('disabled', false)
+                }
+
+            }, 1000)
+        }
+
+        function bindClickBtnSubmit() {
+
+            $("#regBtn").click(function () {
+                $(".err-msg").text('');
+                $.ajax({
+                    url: '{% url 'web:register' %}',
+                    type: 'POST',
+                    data: $("#register-form").serialize(),
+                    dataType: 'JSON',
+                    success: function (res) {
+                        if (res.status){
+                            //成功
+                            alert("注册成功");
+                            window.location.href = res.data
+
+                        }else{
+                            $.each(res.error, function (key, value) {
+                                $("#id_"+key).next().text(value[0]);
+                            })
+                        }
+                    }
+                })
+            })
+        }
+
+    </script>
+{% endblock %}

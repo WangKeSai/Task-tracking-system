@@ -1,0 +1,26 @@
+<li class="dropdown active">
+    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+       aria-expanded="false">项目{% if request.tracer.project %}（{{ request.tracer.project.name }}）{% endif %} <span class="caret"></span></a>
+    <ul class="dropdown-menu" style="padding-top: 10px">
+        {% if creat_project_list %}
+            <li style="padding-left: 12px"><i class="fa fa-list" aria-hidden="true"></i> 我创建的</li>
+            {% for item in creat_project_list %}
+                <li><a href="{% url 'web:dashboard' project_id=item.id %}"
+                       style="padding-left: 30px">{{ item.name }}</a></li>
+            {% endfor %}
+        {% endif %}
+        {% if join_project_list %}
+            <li role="separator" class="divider"></li>
+            <li style="padding-left: 12px"><i class="fa fa-handshake-o" aria-hidden="true"></i> 我参与的</li>
+            {% for item in join_project_list %}
+                <li><a href="{% url 'web:dashboard' project_id=item.project.id %}"
+                       style="padding-left: 30px">{{ item.project.name }}</a></li>
+            {% endfor %}
+        {% endif %}
+        {% if join_project_list or creat_project_list %}
+            <li role="separator" class="divider"></li>
+            <li><a href="{% url 'web:project_list' %}">所有项目</a></li>
+        {% else %}
+            <li style="padding-left: 12px">未参与任何项目</li>
+        {% endif %}
+    </ul>

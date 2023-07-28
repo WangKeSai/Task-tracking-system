@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ea8bd326-a4e2-4d51-8e41-ead9004f753d" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Bj_HousePricePredict" />
+  </component>
+  <component name="ProjectId" id="2HCUEjcmDqvzFK7HsQRIE7qY6Jw" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Detection" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\python_projects\bishe" />
+      <recent name="F:\python_projects\bishe\web\templates\widgets\color_radio" />
+      <recent name="F:\python_projects\bishe\app01\static\app01" />
+      <recent name="F:\python_projects\bishe\app01\templates\app01" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\python_projects\bishe\file" />
+      <recent name="F:\python_projects\bishe\web\static\plugin" />
+      <recent name="F:\python_projects\bishe\web\forms" />
+      <recent name="F:\python_projects\bishe\web\utils" />
+      <recent name="F:\python_projects\bishe\web\static\js" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Django server.bishe">
+    <configuration name="cloud" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="bishe" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tools" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tools/cloud.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="create_price_policy" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="bishe" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tools" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tools/create_price_policy.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="init_price_policy" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="bishe" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tools" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tools/init_price_policy.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="bishe" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tools" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tools/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="visuals" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="bishe" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Bj_HousePricePredict" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Bj_HousePricePredict/visuals.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="bishe" type="Python.DjangoServer" factoryName="Django server">
+      <module name="bishe" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="bishe.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.test" />
+        <item itemvalue="Python.create_price_policy" />
+        <item itemvalue="Python.visuals" />
+        <item itemvalue="Python.cloud" />
+        <item itemvalue="Python.init_price_policy" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand />
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ea8bd326-a4e2-4d51-8e41-ead9004f753d" name="Default Changelist" comment="" />
+      <created>1667788449499</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1667788449499</updated>
+      <workItem from="1667788452523" duration="1605000" />
+      <workItem from="1667807448867" duration="3604000" />
+      <workItem from="1667871122965" duration="24685000" />
+      <workItem from="1667911518322" duration="6012000" />
+      <workItem from="1667955095857" duration="20492000" />
+      <workItem from="1668043278423" duration="6288000" />
+      <workItem from="1668151202298" duration="4776000" />
+      <workItem from="1668213716233" duration="27463000" />
+      <workItem from="1668300209671" duration="18598000" />
+      <workItem from="1668386711734" duration="12175000" />
+      <workItem from="1668428839205" duration="3190000" />
+      <workItem from="1668503948543" duration="3592000" />
+      <workItem from="1668564493855" duration="2777000" />
+      <workItem from="1668648662827" duration="1816000" />
+      <workItem from="1668731468281" duration="16372000" />
+      <workItem from="1668932659070" duration="5822000" />
+      <workItem from="1669012687766" duration="6307000" />
+      <workItem from="1669078778382" duration="2174000" />
+      <workItem from="1669083277645" duration="15390000" />
+      <workItem from="1669179222272" duration="8376000" />
+      <workItem from="1669210844805" duration="2588000" />
+      <workItem from="1669462136957" duration="3485000" />
+      <workItem from="1669550217138" duration="1080000" />
+      <workItem from="1669635218282" duration="2950000" />
+      <workItem from="1670125313383" duration="1790000" />
+      <workItem from="1670324631348" duration="2437000" />
+      <workItem from="1670373005599" duration="7958000" />
+      <workItem from="1670462584703" duration="10866000" />
+      <workItem from="1670556552726" duration="18729000" />
+      <workItem from="1670640055239" duration="13991000" />
+      <workItem from="1670745940586" duration="6837000" />
+      <workItem from="1670801762058" duration="7272000" />
+      <workItem from="1670897248556" duration="13047000" />
+      <workItem from="1670989913059" duration="4516000" />
+      <workItem from="1671070349989" duration="9139000" />
+      <workItem from="1671156808741" duration="666000" />
+      <workItem from="1674734342803" duration="5100000" />
+      <workItem from="1674787038586" duration="8389000" />
+      <workItem from="1674872475384" duration="2998000" />
+      <workItem from="1674959959447" duration="3984000" />
+      <workItem from="1675216610047" duration="2226000" />
+      <workItem from="1675412424629" duration="5346000" />
+      <workItem from="1675471448613" duration="3241000" />
+      <workItem from="1675687457756" duration="825000" />
+      <workItem from="1677632161622" duration="5248000" />
+      <workItem from="1677718550786" duration="6005000" />
+      <workItem from="1677923304681" duration="5924000" />
+      <workItem from="1678017584618" duration="1732000" />
+      <workItem from="1678071358752" duration="6228000" />
+      <workItem from="1678178507259" duration="1670000" />
+      <workItem from="1678184563673" duration="1010000" />
+      <workItem from="1678630325999" duration="69000" />
+      <workItem from="1678701869480" duration="5286000" />
+      <workItem from="1678754584495" duration="19000" />
+      <workItem from="1678756694985" duration="8829000" />
+      <workItem from="1678846163116" duration="746000" />
+      <workItem from="1678848136060" duration="25000" />
+      <workItem from="1678849192473" duration="9557000" />
+      <workItem from="1678933961720" duration="2471000" />
+      <workItem from="1679012127760" duration="120000" />
+      <workItem from="1679012337598" duration="40000" />
+      <workItem from="1679033663334" duration="7209000" />
+      <workItem from="1679188531803" duration="5727000" />
+      <workItem from="1679453475409" duration="5816000" />
+      <workItem from="1680052491223" duration="838000" />
+      <workItem from="1680141897812" duration="3812000" />
+      <workItem from="1680178512478" duration="1183000" />
+      <workItem from="1680223618063" duration="64000" />
+      <workItem from="1680318668859" duration="16660000" />
+      <workItem from="1681111653429" duration="2484000" />
+      <workItem from="1681186277882" duration="523000" />
+      <workItem from="1681258054590" duration="1732000" />
+      <workItem from="1681262664276" duration="705000" />
+      <workItem from="1681354598592" duration="16837000" />
+      <workItem from="1681954936338" duration="3872000" />
+      <workItem from="1682079773095" duration="6097000" />
+      <workItem from="1682301020874" duration="8840000" />
+      <workItem from="1683531812661" duration="12597000" />
+      <workItem from="1683859156387" duration="2489000" />
+      <workItem from="1683862115698" duration="29391000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/web/templates/file.html</url>
+          <line>278</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/web/models.py</url>
+          <line>81</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/bishe$create_price_policy.coverage" NAME="create_price_policy Coverage Results" MODIFIED="1674738093430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
+    <SUITE FILE_PATH="coverage/bishe$base.coverage" NAME="base Coverage Results" MODIFIED="1668229475029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
+    <SUITE FILE_PATH="coverage/bishe$visuals.coverage" NAME="visuals Coverage Results" MODIFIED="1668564836849" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Bj_HousePricePredict" />
+    <SUITE FILE_PATH="coverage/bishe$init_price_policy.coverage" NAME="init_price_policy Coverage Results" MODIFIED="1668237279214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
+    <SUITE FILE_PATH="coverage/bishe$cloud.coverage" NAME="cloud Coverage Results" MODIFIED="1668429336194" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
+    <SUITE FILE_PATH="coverage/bishe$test.coverage" NAME="test Coverage Results" MODIFIED="1677722951615" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
+  </component>
+</project>
